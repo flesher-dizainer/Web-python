@@ -55,6 +55,22 @@
             let out_obj = {chislitel:a,znamenatel:newZnamenatel};
             return out_obj
         }
+        //функция вычитания 2 дробей
+        function subbDrobi(obj1, obj2){
+            let a = obj1.chislitel;
+            let b = obj1.znamenatel;
+            let c = obj2.chislitel;
+            let d = obj2.znamenatel;
+            let newZnamenatel = b * d;
+            a *= newZnamenatel / b;
+            c *= newZnamenatel / d;
+            a -= c;
+            let out_obj = {chislitel:a,znamenatel:newZnamenatel};
+            if ( a > 0 ){
+               out_obj = sokrashenieDrobi(out_obj);
+            }
+            return out_obj
+        }
         //функция сложения неопределённого количества дробей
         function summDrobiArgs(){
             let n_obj = arguments[0];
@@ -63,18 +79,30 @@
             }
             return n_obj;
         }
-        
+        //функция вычитания неопределённого количества дробей
+        function subbDrobiArgs(){
+            let n_obj = arguments[0];
+            for (i=1; i < arguments.length; i++){
+                n_obj = subbDrobi(n_obj,arguments[i]);
+            }
+            return n_obj;
+        }   
         //задание 1
         let audiAuto = {model : 'Audi',year : 2023, avgSpd:100};
-        printInfoAuto(audiAuto);
-        
+        printInfoAuto(audiAuto);  
         document.write('Необходиме время(часов) = ' + calcTimeAuto(80,audiAuto.avgSpd));
         document.write('<br>');
+        
         let objDrobi_1 = {chislitel:1,znamenatel:3};
         let objDrobi_2 = {chislitel:3,znamenatel:5};
         let objDrobi_3 = {chislitel:2,znamenatel:10};
         let n_obj = summDrobiArgs(objDrobi_1,objDrobi_2,objDrobi_3);
         n_obj = sokrashenieDrobi(n_obj);
+        document.write('Числитель = '+n_obj.chislitel);
+        document.write('<br>');
+        document.write('Знаменатель = '+n_obj.znamenatel);
+        document.write('<br> Вычитание дробей <br>');
+        n_obj = subbDrobiArgs(objDrobi_2,objDrobi_3);
         document.write('Числитель = '+n_obj.chislitel);
         document.write('<br>');
         document.write('Знаменатель = '+n_obj.znamenatel);
