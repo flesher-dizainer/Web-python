@@ -71,6 +71,21 @@
             }
             return out_obj
         }
+        //функция умножения 2 дробей
+        function subbDrobi(obj1, obj2){
+            let a = obj1.chislitel;
+            let b = obj1.znamenatel;
+            let c = obj2.chislitel;
+            let d = obj2.znamenatel;
+            let newZnamenatel = b * d;
+            a *= c;
+            b *= d;
+
+            let out_obj = {chislitel:a,znamenatel:b};
+            out_obj = sokrashenieDrobi(out_obj);
+            return out_obj
+        }
+		
         //функция сложения неопределённого количества дробей
         function summDrobiArgs(){
             let n_obj = arguments[0];
