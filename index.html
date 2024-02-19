@@ -127,6 +127,45 @@
             }
             return n_obj;
         }
+        
+        //функция вывода времени на экран
+        function printTime(objectTime){
+            document.write('<br>Текущее время = '+objectTime.time_hh+':'+objectTime.time_mm+':'+objectTime.time_ss+'<br>');
+        }
+        
+        //функция изменения времени на количество секунд
+        function modifyTimeSec(objectTime,seconds){
+            let sec = objectTime.time_ss + seconds;
+            let minutes = objectTime.time_mm + (( sec - ( sec % 60 ) ) / 60);
+            let h = objectTime.time_hh + (( minutes - ( minutes % 60 ) ) / 60);
+            sec = sec % 60;
+            minutes = minutes % 60;
+            h = h % 24;
+            objectTime.time_hh = h;
+            objectTime.time_mm = minutes;
+            objectTime.time_ss = sec;
+            return objectTime;
+        }
+        
+        //функция изменения времени на количество минут
+        function modifyTimeMin(objectTime,minut){
+            let minutes = objectTime.time_mm + minut;
+            let h = objectTime.time_hh + (( minutes - ( minutes % 60 ) ) / 60);
+            minutes = minutes % 60;
+            h = h % 24;
+            objectTime.time_hh = h;
+            objectTime.time_mm = minutes;
+            return objectTime;
+        }
+        
+        //функция изменения времени на количество часов
+        function modifyTimeH(objectTime,hh){
+            let h = objectTime.time_hh + hh;
+            h = h % 24;
+            objectTime.time_hh = h;
+            return objectTime; 
+        }
+        
         //задание 1
         let audiAuto = {model : 'Audi',year : 2023, avgSpd:100};
         printInfoAuto(audiAuto);  
@@ -162,6 +201,19 @@
         document.write('Числитель = '+n_obj.chislitel);
         document.write('<br>');
         document.write('Знаменатель = '+n_obj.znamenatel);
+        
+        let objectTime = {
+            time_hh : 23,
+            time_mm : 59,
+            time_ss : 10
+        }
+        printTime(objectTime);
+        objectTime = modifyTimeSec(objectTime,100);
+        console.log(objectTime);
+        objectTime = modifyTimeMin(objectTime,100);
+        console.log(objectTime);
+        objectTime = modifyTimeH(objectTime,12);
+        console.log(objectTime);
     </script>
 </body>
 </html>
